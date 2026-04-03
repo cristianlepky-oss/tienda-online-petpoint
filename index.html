@@ -1,1 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PETPOINT</title>
+  <style>
+    :root{--bg:#f6f7fb;--card:#fff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--brand:#111827;--soft:#f3f4f6;--wa:#25d366;--wa2:#1da851}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,sans-serif;background:linear-gradient(180deg,#f8fafc,#f3f4f6);color:var(--text)}
+    .wrap{max-width:1160px;margin:0 auto;padding:18px}.hero,.grid,.layout{display:grid;gap:18px}.hero{grid-template-columns:1.2fr .8fr;background:var(--card);border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:0 10px 30px rgba(15,23,42,.05)}
+    .left{padding:32px}.right{padding:24px;background:#f8fafc;border-left:1px solid var(--line)} .card{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 8px 24px rgba(15,23,42,.04)}
+    .pad{padding:22px}.badges,.pills{display:flex;flex-wrap:wrap;gap:8px}.badge,.pill{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:12px}.badge.dark{background:var(--brand);color:#fff;border-color:var(--brand)}
+    h1{font-size:48px;line-height:1.03;letter-spacing:-.03em;margin:0 0 14px}.muted{color:var(--muted)} .hero-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.mini{padding:14px;border:1px solid var(--line);background:#fff;border-radius:18px;font-size:14px}.mini strong{display:block;margin-top:4px;color:var(--text)}
+    .layout{grid-template-columns:1fr 360px;margin-top:18px}.toolbar{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:10px}.input,.select,.chip{width:100%;height:48px;border:1px solid var(--line);border-radius:16px;background:#fff;padding:0 14px;font-size:15px}.switch{display:flex;justify-content:space-between;align-items:center;padding:14px 0 0}.products{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}.product{padding:16px;border:1px solid var(--line);border-radius:22px;background:#fff;cursor:pointer;transition:.15s}.product:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(15,23,42,.06)}.product.active{box-shadow:inset 0 0 0 1px var(--brand);border-color:var(--brand)}
+    .top{display:flex;justify-content:space-between;gap:10px}.brand{font-size:14px;color:var(--muted)}.name{font-size:18px;font-weight:700;line-height:1.2;margin-top:4px;min-height:44px}.price{margin-top:14px;font-size:28px;font-weight:800;letter-spacing:-.03em}
+    .selbox{background:var(--brand);color:#fff;border-radius:22px;padding:18px}.selbox small{color:#cbd5e1}.price2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}.price2 div{background:rgba(255,255,255,.06);border-radius:14px;padding:12px}.price2 strong{display:block;font-size:22px;margin-top:4px}
+    .sticky{position:sticky;top:18px}.line{background:var(--soft);border-radius:18px;padding:14px;margin-top:12px}.row{display:flex;justify-content:space-between;gap:10px;font-size:14px}.row+.row{margin-top:8px}.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}.chip{display:flex;justify-content:center;align-items:center;background:var(--soft);cursor:pointer;font-weight:700}.chip.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+    .message{white-space:pre-line;background:var(--soft);border-radius:18px;padding:14px;line-height:1.7;font-size:14px;color:#334155}.wa{display:flex;align-items:center;justify-content:center;height:54px;border-radius:18px;background:var(--wa);color:#fff;text-decoration:none;font-weight:800;margin-top:14px;box-shadow:0 10px 24px rgba(37,211,102,.25)}.wa:hover{background:var(--wa2)}.hidden{display:none}
+    @media(max-width:1024px){.hero,.layout{grid-template-columns:1fr}.right{border-left:0;border-top:1px solid var(--line)}.products{grid-template-columns:repeat(2,1fr)}.sticky{position:static}}
+    @media(max-width:720px){h1{font-size:34px}.left,.right,.pad{padding:20px}.hero-cards,.toolbar,.products{grid-template-columns:1fr}.chips{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="left">
+        <div class="badges"><span class="badge dark">PETPOINT</span><span class="badge">Catalogo online</span><span class="badge">Pedido por WhatsApp</span></div>
+        <h1>Elegí el alimento y pedilo en segundos.</h1>
+        <div class="muted">Filtrás por perro o gato, elegís bolsa o fraccionado y enviás el pedido directo por WhatsApp.</div>
+        <div class="hero-cards">
+          <div class="mini">Compra fácil<strong>Sin vueltas</strong></div>
+          <div class="mini">Formato flexible<strong>Bolsa o fraccionado</strong></div>
+          <div class="mini">Beneficio visible<strong>Miércoles, viernes y sábado envío gratis</strong></div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="card pad">
+          <div style="font-size:22px;font-weight:800;margin-bottom:6px">Pedido rápido</div>
+          <div class="muted" style="margin-bottom:10px">Elegí un producto y tocá el botón verde.</div>
+          <div class="selbox">
+            <small>Producto seleccionado</small>
+            <div id="heroBrand" style="font-size:22px;font-weight:800;margin-top:6px"></div>
+            <div id="heroName" style="color:#cbd5e1"></div>
+            <div class="price2">
+              <div><small>Bolsa</small><strong id="heroBag"></strong></div>
+              <div><small>Por kg</small><strong id="heroKg"></strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout">
+      <div>
+        <div class="card">
+          <div class="pad">
+            <div style="font-size:24px;font-weight:800">Catálogo PETPOINT</div>
+            <div class="muted">Buscá marca, filtrá especie y armá tu pedido.</div>
+            <div class="toolbar" style="margin-top:14px">
+              <input id="search" class="input" placeholder="Buscar marca o producto" />
+              <select id="species" class="select"><option>Todos</option><option>Perros</option><option>Gatos</option></select>
+              <select id="brand" class="select"></select>
+            </div>
+            <div class="switch">
+              <div><strong>Modo interno</strong><div class="muted">Márgenes sin mostrarlos al cliente.</div></div>
+              <label><input id="internalMode" type="checkbox" /> Activar</label>
+            </div>
+            <div id="internalBox" class="line hidden">
+              <div class="toolbar">
+                <div><div class="muted">Margen general: <strong id="marginLabel"></strong></div><input id="margin" type="range" min="-10" max="40" step="1" value="10" style="width:100%;margin-top:10px"></div>
+                <div><div class="muted">Recargo fraccionado: <strong id="fractionLabel"></strong></div><input id="fractionSurcharge" type="range" min="0" max="40" step="1" value="18" style="width:100%;margin-top:10px"></div>
+                <div><div class="muted">Redondeo: <strong id="roundLabel"></strong></div><input id="roundTo" type="range" min="50" max="1000" step="50" value="100" style="width:100%;margin-top:10px"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="products" class="products"></div>
+      </div>
+
+      <div class="sticky">
+        <div class="card">
+          <div class="pad">
+            <div style="font-size:22px;font-weight:800">Tu pedido</div>
+            <div class="muted">Elegí bolsa completa o fraccionado.</div>
+            <div class="line"><div class="muted">Producto</div><div id="selectedBrand" style="font-size:22px;font-weight:800;margin-top:4px"></div><div id="selectedName" style="margin-top:4px"></div></div>
+            <div class="switch">
+              <div><strong>Compra fraccionada</strong><div class="muted">Desde 1 kg cuando el producto lo permite.</div></div>
+              <label><input id="fractionMode" type="checkbox" checked /> Usar</label>
+            </div>
+            <div id="fractionBox" class="line">
+              <div class="row"><span>Kilos</span><strong id="kgLabel"></strong></div>
+              <input id="fractionKg" type="range" min="1" max="5" step="1" value="2" style="width:100%;margin-top:10px">
+              <div class="chips">
+                <button class="chip kg-btn" data-kg="1">1 kg</button>
+                <button class="chip kg-btn active" data-kg="2">2 kg</button>
+                <button class="chip kg-btn" data-kg="3">3 kg</button>
+                <button class="chip kg-btn" data-kg="5">5 kg</button>
+              </div>
+              <div class="row" style="margin-top:12px"><span>Precio por kg</span><strong id="pricePerKg"></strong></div>
+              <div class="row"><span>Total</span><strong id="fractionTotal"></strong></div>
+            </div>
+            <div id="bagBox" class="line hidden"><div class="row"><span>Presentación</span><strong id="bagPresentation"></strong></div><div class="row"><span>Total</span><strong id="bagTotal"></strong></div></div>
+            <div class="line" style="background:#111827;color:#fff"><div style="font-size:20px;font-weight:800">Miércoles, viernes y sábado envío gratis</div></div>
+            <div style="margin-top:14px"><div class="muted" style="font-weight:700;margin-bottom:8px">Mensaje listo para enviar</div><div id="messageBox" class="message"></div></div>
+            <a id="waButton" class="wa" target="_blank" rel="noreferrer">Pedir por WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const WHATSAPP_NUMBER='5492262655225';
+    const DELIVERY_TEXT='Miércoles, viernes y sábado envío gratis';
+    const products=[
+      {id:1,species:'Perros',brand:'Old Prince',name:'Equilibrium Adulto Medium & Large',sizeKg:20,bagPrice:64990,fractionable:true,tag:'Uso diario'},
+      {id:2,species:'Perros',brand:'Old Prince',name:'Premium Adulto Cordero y Arroz',sizeKg:15,bagPrice:62990,fractionable:true,tag:'Premium'},
+      {id:3,species:'Perros',brand:'Kongo',name:'Natural Adultos Medianos y Grandes',sizeKg:21,bagPrice:35990,fractionable:true,tag:'Alta rotación'},
+      {id:4,species:'Perros',brand:'Maintenance',name:'Criadores Adultos',sizeKg:22,bagPrice:33990,fractionable:true,tag:'Buen precio'},
+      {id:5,species:'Perros',brand:'Voraz',name:'Adulto Carne',sizeKg:20,bagPrice:21990,fractionable:true,tag:'Económico'},
+      {id:6,species:'Perros',brand:'Fawna',name:'Adulto Mordida Mediana y Grande',sizeKg:15,bagPrice:87990,fractionable:true,tag:'Línea premium'},
+      {id:7,species:'Perros',brand:'Royal Canin',name:'Medium Adult',sizeKg:15,bagPrice:165990,fractionable:false,tag:'Veterinaria'},
+      {id:8,species:'Perros',brand:'Eukanuba',name:'Adult Medium Breed',sizeKg:15,bagPrice:101990,fractionable:false,tag:'Premium'},
+      {id:9,species:'Gatos',brand:'Old Prince',name:'Cats Complete Care',sizeKg:7.5,bagPrice:51990,fractionable:true,tag:'Favorito en gatos'},
+      {id:10,species:'Gatos',brand:'Old Prince',name:'Cats Indoor',sizeKg:7.5,bagPrice:57190,fractionable:true,tag:'Indoor'},
+      {id:11,species:'Gatos',brand:'Kongo',name:'Adulto Natural Carne y Pollo',sizeKg:8,bagPrice:25990,fractionable:true,tag:'Natural'},
+      {id:12,species:'Gatos',brand:'Royal Canin',name:'Kitten',sizeKg:1.5,bagPrice:37590,fractionable:false,tag:'Kitten'}
+    ];
+    const state={species:'Todos',brand:'Todas',search:'',selectedId:1,internalMode:false,marginPct:10,fractionSurchargePct:18,roundTo:100,fractionMode:true,fractionKg:2};
+    const el=id=>document.getElementById(id);
+    const money=v=>new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(v);
+    const round=(v,s)=>Math.round(v/s)*s;
+    const filtered=()=>products.filter(p=>{const a=state.species==='Todos'||p.species===state.species;const b=state.brand==='Todas'||p.brand===state.brand;const q=state.search.trim().toLowerCase();const t=`${p.brand} ${p.name} ${p.species} ${p.tag}`.toLowerCase();return a&&b&&(!q||t.includes(q));});
+    const selected=()=>filtered().find(p=>p.id===state.selectedId)||filtered()[0]||products[0];
+    const pricing=p=>{const bag=round(p.bagPrice*(1+state.marginPct/100),state.roundTo);const kilo=round((p.bagPrice/p.sizeKg)*(1+(state.marginPct+state.fractionSurchargePct)/100),state.roundTo);const max=Math.max(1,Math.floor(p.sizeKg));const kg=Math.min(Math.max(state.fractionKg,1),max);return {bag,kilo,kg,total:kilo*kg,max}};
+    function fillBrands(){const brands=['Todas',...new Set(products.map(p=>p.brand))];el('brand').innerHTML=brands.map(b=>`<option value="${b}">${b==='Todas'?'Todas las marcas':b}</option>`).join('');el('brand').value=state.brand;}
+    function renderProducts(){const list=filtered();if(!list.find(p=>p.id===state.selectedId)&&list[0])state.selectedId=list[0].id;el('products').innerHTML=list.map(p=>{const price=round(p.bagPrice*(1+state.marginPct/100),state.roundTo);return `<div class="product ${p.id===state.selectedId?'active':''}" onclick="pick(${p.id})"><div class="top"><div><div class="brand">${p.brand}</div><div class="name">${p.name}</div></div><div class="pill">${p.species}</div></div><div class="pills"><span class="pill">${p.sizeKg} kg</span><span class="pill">${p.tag}</span>${p.fractionable?'<span class="pill">1 kg+</span>':''}</div><div class="price">${money(price)}</div></div>`}).join('');}
+    function renderSelection(){const p=selected();const x=pricing(p);if(!p.fractionable)state.fractionMode=false;el('heroBrand').textContent=p.brand;el('heroName').textContent=p.name;el('heroBag').textContent=money(x.bag);el('heroKg').textContent=money(x.kilo);el('selectedBrand').textContent=p.brand;el('selectedName').textContent=p.name;el('fractionMode').checked=state.fractionMode;el('fractionMode').disabled=!p.fractionable;el('fractionBox').classList.toggle('hidden',!state.fractionMode||!p.fractionable);el('bagBox').classList.toggle('hidden',state.fractionMode&&p.fractionable);el('kgLabel').textContent=`${x.kg} kg`;el('pricePerKg').textContent=money(x.kilo);el('fractionTotal').textContent=money(x.total);el('bagPresentation').textContent=`Bolsa de ${p.sizeKg} kg`;el('bagTotal').textContent=money(x.bag);el('fractionKg').max=Math.max(1,Math.floor(p.sizeKg));el('fractionKg').value=String(x.kg);document.querySelectorAll('.kg-btn').forEach(btn=>btn.classList.toggle('active',Number(btn.dataset.kg)===x.kg));const msg=(state.fractionMode&&p.fractionable)?`Hola PETPOINT, quiero pedir este producto:\n• ${p.brand} - ${p.name}\n• Cantidad: ${x.kg} kg fraccionado\n• Precio estimado: ${money(x.total)}\n• ${DELIVERY_TEXT}`:`Hola PETPOINT, quiero pedir este producto:\n• ${p.brand} - ${p.name}\n• Presentación: bolsa de ${p.sizeKg} kg\n• Precio estimado: ${money(x.bag)}\n• ${DELIVERY_TEXT}`;el('messageBox').textContent=msg;el('waButton').href=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;}
+    function renderInternal(){el('internalBox').classList.toggle('hidden',!state.internalMode);el('marginLabel').textContent=`${state.marginPct}%`;el('fractionLabel').textContent=`${state.fractionSurchargePct}%`;el('roundLabel').textContent=money(state.roundTo);}
+    function render(){renderInternal();renderProducts();renderSelection();}
+    window.pick=id=>{state.selectedId=id;render()};
+    fillBrands();
+    el('search').addEventListener('input',e=>{state.search=e.target.value;render()});
+    el('species').addEventListener('change',e=>{state.species=e.target.value;render()});
+    el('brand').addEventListener('change',e=>{state.brand=e.target.value;render()});
+    el('internalMode').addEventListener('change',e=>{state.internalMode=e.target.checked;render()});
+    el('margin').addEventListener('input',e=>{state.marginPct=Number(e.target.value);render()});
+    el('fractionSurcharge').addEventListener('input',e=>{state.fractionSurchargePct=Number(e.target.value);render()});
+    el('roundTo').addEventListener('input',e=>{state.roundTo=Number(e.target.value);render()});
+    el('fractionMode').addEventListener('change',e=>{state.fractionMode=e.target.checked;render()});
+    el('fractionKg').addEventListener('input',e=>{state.fractionKg=Number(e.target.value);render()});
+    document.querySelectorAll('.kg-btn').forEach(btn=>btn.addEventListener('click',()=>{state.fractionKg=Number(btn.dataset.kg);render()}));
+    render();
+  </script>
+</body>
+</html>
 
